@@ -1,31 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using school_management.Repositories;
+﻿using school_management.Repositories;
 
 namespace school_management.Business
 {
     internal class StudentBusiness
     {
-        private StudentRepository repository = new StudentRepository();
+        private IGenericRepository<Student> repository;
+
+        public StudentBusiness(IGenericRepository<Student> repository)
+        {
+            this.repository = repository;
+        }
 
         public void DisplayStudents()
         {
-            repository.GetAllStudents();
+            repository.GetAll();
         }
 
         public void InsertStudent(Student student)
         {
-            repository.InsertStudent(student);
+            repository.Insert(student);
         }
 
         public void DeleteStudent(int id)
         {
-            repository.DeleteStudent(id);
+            repository.Delete(id);
         }
 
         public void UpdateStudent(Student student)
         {
-            repository.UpdateStudent(student);
+            repository.Update(student);
         }
     }
 }

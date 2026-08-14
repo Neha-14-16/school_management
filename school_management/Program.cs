@@ -1,5 +1,7 @@
 ﻿using System;
 using school_management.Business;
+using school_management.Repositories;
+
 
 namespace school_management
 {
@@ -7,9 +9,13 @@ namespace school_management
     {
         static void Main(string[] args)
         {
-            StudentBusiness studentBusiness = new StudentBusiness();
-            TeacherBusiness teacherBusiness = new TeacherBusiness();
+            IGenericRepository<Student> repository = new GenericRepository<Student>();
+            StudentBusiness studentBusiness = new StudentBusiness(repository);
+            IGenericRepository<Teacher> teacherRepository =
+     new GenericRepository<Teacher>();
 
+            TeacherBusiness teacherBusiness =
+                new TeacherBusiness(teacherRepository);
             while (true)
             {
                 

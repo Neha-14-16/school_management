@@ -1,35 +1,38 @@
-﻿namespace school_management
+﻿using school_management.Repositories;
+
+namespace school_management.Business
 {
     internal class TeacherBusiness
     {
-        private TeacherRepository repository = new TeacherRepository();
+        private IGenericRepository<Teacher> repository;
 
+        public TeacherBusiness(IGenericRepository<Teacher> repository)
+        {
+            this.repository = repository;
+        }
 
         // DISPLAY ALL TEACHERS
         public void DisplayTeachers()
         {
-            repository.GetAllTeachers();
+            repository.GetAll();
         }
-
 
         // INSERT TEACHER
         public void InsertTeacher(Teacher teacher)
         {
-            repository.InsertTeacher(teacher);
+            repository.Insert(teacher);
         }
-
 
         // DELETE TEACHER
         public void DeleteTeacher(int teacher_id)
         {
-            repository.DeleteTeacher(teacher_id);
+            repository.Delete(teacher_id);
         }
-
 
         // UPDATE TEACHER
         public void UpdateTeacher(Teacher teacher)
         {
-            repository.UpdateTeacher(teacher);
+            repository.Update(teacher);
         }
     }
 }
